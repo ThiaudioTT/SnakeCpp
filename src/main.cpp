@@ -73,7 +73,7 @@ int main()
       snakePosition.x += xVelocity;
       snakePosition.y += yVelocity;
 
-      snake.setPosition(snakePosition);
+      snake.setPosition(40,2);
 
       // Render
       window.clear(sf::Color::Black);
