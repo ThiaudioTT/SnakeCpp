@@ -1,13 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <deque>
 
+constexpr int pixel = 12; // this will be the pixel of our snake
+
+
 class snake {
 private:
-    std::deque<sf::Vector2f> snakeBody;
-    std::deque<sf::RectangleShape> snakePosition;
+    std::deque<sf::RectangleShape> snakeBody;
+    std::deque<sf::Vector2f> snakePosition;
 
 public:
-    snake(sf::Vector2f head, sf::Vector2f tail);
+
+    snake();
     void move();
     void grow();
 };

@@ -1,11 +1,9 @@
-#include <snake.hpp>
+#include "../include/snake.hpp"
+using namespace sf;
 
-snake::snake(sf::Vector2f head, sf::Vector2f tail)
+snake::snake()
 {
-    snakeBody.push_back(head);
-    snakeBody.push_back(tail);
-
-    
-    snakePosition.push_back(head);
-    snakePosition.push_back(tail);
+    // 1 pixel is 1 
+    snakePosition = {Vector2f(400, 300), Vector2f(400 + pixel, 300), Vector2f(400 + 2 * pixel, 300)}; //coordinates, center. Attention to window width, clean code after
+    // snakePosition.push_back(Vector2f(400, 300));
 }
