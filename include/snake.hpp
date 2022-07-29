@@ -9,6 +9,7 @@ struct Speed {
     int y = 2;
 };
 
+// invariant: A snake is a snake, yaay
 class Snake {
 private:
     std::deque<sf::RectangleShape> snakeBody;
