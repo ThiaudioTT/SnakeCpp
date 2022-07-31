@@ -1,12 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <deque>
+// #include "../include/board.hpp"
 
 constexpr int pixel = 12; // this will be the pixel of our snake
 
-constexpr int maxSpeed = 2;
+constexpr int maxSpeed = 12;
 struct Speed {
-    int x = 2;
-    int y = 2;
+    int x = 12;
+    int y = 12;
 };
 
 // invariant: A snake is a snake, yaay

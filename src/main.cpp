@@ -8,7 +8,7 @@ constexpr int windowHeight = 600;
 int main()
 {
    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Snake");
-   window.setFramerateLimit(60);
+   window.setFramerateLimit(30u);
 
 
    Snake snake;
