@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include <deque>
-// #include "../include/board.hpp"
 
 constexpr int pixel = 12; // this will be the pixel of our snake
 
@@ -18,11 +17,22 @@ private:
 
     Speed speed;
 
+    int _direction = 3;
 public:
-    int direction = 0; // head direction TODO PRIVATE MEMBER
 
     Snake();
     void draw(sf::RenderWindow &window);
     void move(int d);
     void grow();
+
+    // Change and return direction
+    void direction(int d);
+    int direction(){return _direction;};
+
+    // positions functions
+    sf::Vector2f getHeadP(){return snakePosition[0];};
+    sf::Vector2f getNode(int n);
+
+    int checkCollision();
+
 };

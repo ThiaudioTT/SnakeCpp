@@ -5,7 +5,7 @@ using namespace sf;
 Snake::Snake()
 {
     snakeBody = {RectangleShape(Vector2f(12,12))};
-    snakePosition = {Vector2f(400, 300)}; 
+    snakePosition = {Vector2f(396, 300)}; // they need to be multiples of 12
 }
 
 /*
@@ -23,22 +23,19 @@ void Snake::draw(RenderWindow &window)
 
 /*
 Update snake coordinates
+@param Snake::direction
 */
 void Snake::move(int d)
 {
-
-    // TODO, COLISION
-    // maybe if altering directions to 1 and -1, 2 and -2 shall solve
-    //if(direction == d) // obs (this is ugly break code)
-      //  return; // do nothing!
-
+    // snake::direction will deal with internal movement
     switch(d)
     {
+        // I want to move to...:
         case 0: // up
             speed.x = 0;
             speed.y = -maxSpeed;
             break;
-        case 1:
+        case 1: // right (clockwork system)
             speed.x = maxSpeed;
             speed.y = 0;
             break;
@@ -57,10 +54,10 @@ void Snake::move(int d)
             break;
     }
 
-    const int newHeadx = snakePosition[0].x + speed.x;    
-    const int newHeady = snakePosition[0].y + speed.y;
+    const sf::Vector2f newHead(snakePosition[0].x + speed.x, 
+                            snakePosition[0].y + speed.y);
 
-    snakePosition.push_front(sf::Vector2f(newHeadx, newHeady));
+    snakePosition.push_front(newHead);
     snakePosition.pop_back();
 }
 
@@ -68,4 +65,48 @@ void Snake::grow()
 {
     snakePosition.push_back(snakePosition[snakePosition.size() - 1]);
     snakeBody.push_back(RectangleShape(Vector2f(12,12)));
+}
+
+
+void Snake::direction(int d)
+{
+
+    // TODO there are better forms to do this.
+    if(_direction == 0 && d == 2)
+        return;
+    if(_direction == 1 && d == 3)
+        return;
+    if(_direction == 2 && d == 0)
+        return;
+    if(_direction == 3 && d == 1)
+        return;
+    
+    _direction = d;
+}
+
+sf::Vector2f Snake::getNode(int n)
+{
+    if(n > snakePosition.size())
+    {
+        std::cerr << "OUT OF BOUNDS ARRAY, SNAKE::GETNODE EXPECTED";
+        throw int{};
+    }
+
+    return snakePosition[n];
+};
+
+
+// check collision
+int Snake::checkCollision()
+{
+    for(int i = 1; i < snakePosition.size(); i++)
+    {
+        if(snakePosition[0].x == snakePosition[i].x && snakePosition[0].y == snakePosition[i].y)
+        {
+            std::cout << "SNAKE COLLISION DETECTED" << std::endl;
+            return -1;
+        }
+    }
+
+    return 0;
 }
