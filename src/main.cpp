@@ -3,8 +3,8 @@
 #include "../include/fruit.hpp"
 #include <iostream> // for debug
 
-constexpr int windowWidth = 800;
-constexpr int windowHeight = 600;
+constexpr int windowWidth = 600;
+constexpr int windowHeight = 396; // 400, but 396 is multiple of 12 (pixel)
 
 int main()
 {
@@ -13,8 +13,13 @@ int main()
    window.setKeyRepeatEnabled(false);
 
    Snake snake;
+
+   // DEFINING FRUITS
    Fruit apple(sf::Color::Red);
    apple.generate();
+
+   Fruit grape(sf::Color::Magenta);
+   grape.generate();
 
    while (window.isOpen())
    {
@@ -70,26 +75,25 @@ int main()
       }
 
       // check border
-      if(snake.getHeadP().x < 0 || snake.getHeadP().x > 800 - 12
-         || snake.getHeadP().y < 0 || snake.getHeadP().y > 600 - 12)
+      if(snake.getHeadP().x < 0 || snake.getHeadP().x > windowWidth - pixel
+         || snake.getHeadP().y < 0 || snake.getHeadP().y > windowHeight - pixel)
       {
          std::cout << "COLLISION WITH BORDER DETECTED" << std::endl;
          sf::sleep(sf::seconds(5));
          return 0;
       }
 
-      // eating a fruit; TODO: THERES A BETTER WAY TO DO THIS like implementin this in fruit::collision
-      if(apple.position().x == snake.getHeadP().x && apple.position().y == snake.getHeadP().y)
-      {
-         apple.generate();
-         snake.grow();
-      }
+      // CHECKING FRUIT COLLISION
+      apple.isEaten(snake);
+      grape.isEaten(snake);
 
       // Render
       window.clear(sf::Color::Black);
 
       snake.draw(window);
+
       apple.draw(window);
+      grape.draw(window);
 
       window.display();
       sf::sleep(sf::milliseconds(100));
