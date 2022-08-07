@@ -42,7 +42,7 @@ In windows is more harder.
 
 1. Install sfml according to your compiler and put the files in /include directory.
 
-2. Install your compiler and use the make to compile the files, use `windows` as an argument.
+2. Install your compiler and use the `make` to compile the files, use `windows` as an argument.
 
 Example using [mingw](https://www.mingw-w64.org/) (The common option):
 
