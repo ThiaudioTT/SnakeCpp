@@ -5,12 +5,10 @@ using namespace sf;
 Snake::Snake()
 {
     snakeBody = {RectangleShape(Vector2f(12,12))};
+    snakeBody[0].setFillColor(sf::Color::Yellow);
     snakePosition = {Vector2f(396, 300)}; // they need to be multiples of 12
 }
 
-/*
-Draw the snake in the giving window
-*/
 void Snake::draw(RenderWindow &window)
 {
     for(int i = 0; i < snakeBody.size(); i++)
@@ -21,10 +19,6 @@ void Snake::draw(RenderWindow &window)
 
 }
 
-/*
-Update snake coordinates
-@param Snake::direction
-*/
 void Snake::move(int d)
 {
     // snake::direction will deal with internal movement
@@ -95,8 +89,6 @@ sf::Vector2f Snake::getNode(int n)
     return snakePosition[n];
 };
 
-
-// check collision
 int Snake::checkCollision()
 {
     for(int i = 1; i < snakePosition.size(); i++)

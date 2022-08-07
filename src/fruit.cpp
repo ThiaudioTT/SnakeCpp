@@ -13,12 +13,15 @@ Fruit::Fruit(sf::Color c)
 
 void Fruit::generate()
 {
-    std::srand(std::time(0));
+    std::srand(std::time(nullptr) * 1000);
 
     // here we need to generate multiples of 12.
     // TODO, AVOID MAGIC CONSTANTS!
-    sf::Vector2f random = Vector2f(((rand() % 49) * 12), (rand() % 33) * 12); // simple math here, I will explain later
+    constexpr int maxX = 49; // 600 (windowWidth) / 12 (pixel) = 50, 50 - 1 = 49
+    constexpr int maxY = 32; // 396 / 12 = 33, 33 - 1 = 32
+    sf::Vector2f random = Vector2f(((rand() % maxX) * 12), (rand() % maxY) * 12); // simple math here, I will explain later
     std::cout << "X: " << random.x << " Y: " << random.y << std::endl;
+
     fruitPosition = random;
     fruitBody.setPosition(fruitPosition);
 }
