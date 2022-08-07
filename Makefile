@@ -13,7 +13,7 @@ main.o: ./src/main.cpp
 
 snakeGame: main.o snake.o fruit.o
 	@echo "Building..."
-	g++ -o SnakeGame.o ./bin/snake.o ./bin/fruit.o ./bin/main.o $(LIBS)
+	g++ -o SnakeGame ./bin/snake.o ./bin/fruit.o ./bin/main.o $(LIBS)
 
 
 # FOR WINDOWS
