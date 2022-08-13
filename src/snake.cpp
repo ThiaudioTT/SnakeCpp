@@ -95,7 +95,10 @@ int Snake::checkCollision()
     {
         if(snakePosition[0].x == snakePosition[i].x && snakePosition[0].y == snakePosition[i].y)
         {
+            // TODO: probably there's a bug here.
             std::cout << "SNAKE COLLISION DETECTED" << std::endl;
+            std::cout << "Current head position: X: " << snakePosition[0].x << " Y: " << snakePosition[0].y << "\n"
+                        << "Node: " << i << ", X: " << snakePosition[i].x << " Y: " << snakePosition[i].y << "\n"; 
             return -1;
         }
     }

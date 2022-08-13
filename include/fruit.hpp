@@ -44,6 +44,7 @@ public:
      * 
      * It use fruit::generate()
      * @param snake 
+     * @return boolean value
      */
-    void isEaten(Snake &snake);
+    bool isEaten(Snake &snake);
 };

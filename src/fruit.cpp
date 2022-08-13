@@ -31,11 +31,13 @@ void Fruit::draw(RenderWindow &window)
     window.draw(fruitBody);
 }
 
-void Fruit::isEaten(Snake &snake)
+bool Fruit::isEaten(Snake &snake)
 {
     if (fruitPosition.x == snake.getHeadP().x && fruitPosition.y == snake.getHeadP().y)
     {
         generate(); // generate new fruit
         snake.grow();
+        return true;
     }
+    return false;
 }

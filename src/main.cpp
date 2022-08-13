@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "../include/snake.hpp"
 #include "../include/fruit.hpp"
+#include "../include/sound.hpp"
 #include <iostream> // for debug
 
 constexpr int windowWidth = 600;
@@ -13,13 +14,11 @@ int main()
    window.setKeyRepeatEnabled(false);
 
    Snake snake;
+   Sound sound;
 
    // DEFINING FRUITS
    Fruit apple(sf::Color::Red);
-   apple.generate();
-
    Fruit grape(sf::Color::Magenta);
-   grape.generate();
 
    while (window.isOpen())
    {
@@ -84,8 +83,8 @@ int main()
       }
 
       // CHECKING FRUIT COLLISION
-      apple.isEaten(snake);
-      grape.isEaten(snake);
+      if(apple.isEaten(snake) || grape.isEaten(snake))
+         sound.playPop();
 
       // Render
       window.clear(sf::Color::Black);
