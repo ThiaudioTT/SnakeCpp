@@ -1,6 +1,9 @@
 /bin
+.vscode
 SnakeGame.o
 todo.txt
 *.log
 *.exe
 SnakeGame
+*.o
+core
