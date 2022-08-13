@@ -22,7 +22,7 @@ Linux is much easier, open the folder with the terminal and type:
 
 ```make```
 
-and execute ```SnakeGame.o```
+and execute ```SnakeGame```
 
 Make sure that you have the dependencies like sfml and make:
 
