@@ -11,6 +11,7 @@ int main()
 {
    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Snake", sf::Style::Titlebar);
    window.setFramerateLimit(30);
+   
    window.setKeyRepeatEnabled(false);
 
    Snake snake;
@@ -61,6 +62,8 @@ int main()
             default:
                break;
             }
+
+            break; //  this prevent unexpected internal collisions when clicking 2 keys very very fast. See issue #16
          }
       }
 
