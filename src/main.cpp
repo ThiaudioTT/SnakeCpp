@@ -21,6 +21,21 @@ int main()
    Fruit apple(sf::Color::Red);
    Fruit grape(sf::Color::Magenta);
 
+   // defining scoreText
+   sf::Font font;
+   if (!font.loadFromFile("assets/ChivoMono.ttf"))
+   {
+      std::cout << "ERROR: FONT NOT FOUND" << std::endl;
+      return 0;
+   }
+   sf::Text scoreText;
+   int scoreValue = 0;
+   scoreText.setFont(font);
+   scoreText.setCharacterSize(24);
+   scoreText.setFillColor(sf::Color::White);
+   scoreText.setPosition(0, 0);
+   scoreText.setString("Score: 0");
+
    while (window.isOpen())
    {
       sf::Event event;
@@ -87,7 +102,11 @@ int main()
 
       // CHECKING FRUIT COLLISION
       if(apple.isEaten(snake) || grape.isEaten(snake))
+      {
          sound.playPop();
+         scoreValue++;
+         scoreText.setString("Score: " + std::to_string(scoreValue));
+      }
 
       // Render
       window.clear(sf::Color::Black);
@@ -96,6 +115,7 @@ int main()
 
       apple.draw(window);
       grape.draw(window);
+      window.draw(scoreText);
 
       window.display();
       sf::sleep(sf::milliseconds(100));
