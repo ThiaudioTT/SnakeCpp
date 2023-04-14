@@ -36,7 +36,7 @@ bool Fruit::isEaten(Snake &snake)
     if (fruitPosition.x == snake.getHeadP().x && fruitPosition.y == snake.getHeadP().y)
     {
         generate(); // generate new fruit
-        snake.grow();
+        snake.grow(); // refactor: think about if snake should grow here
         return true;
     }
     return false;
